@@ -16,6 +16,7 @@ func TestNewCombat(t *testing.T) {
 func TestGetWiningProbability(t *testing.T) {
 	assert.InDelta(t, 0.5, GetWiningProbability(1, 1, 0), 0.01)
 	assert.InDelta(t, 0.33, GetWiningProbability(1, 2, 0), 0.01)
+	assert.InDelta(t, 0.67, GetWiningProbability(2, 1, 0), 0.01)
 	assert.InDelta(t, 0.5, GetWiningProbability(1, 10, 0.5), 0.01)
 }
 
