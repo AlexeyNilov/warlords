@@ -1,17 +1,17 @@
 package things
 
 type Unit struct {
-	Speed int
-	Strength int
+	Speed float64
+	Strength float64
 }
 
-func NewUnit(speed int, strength int) *Unit {
+func NewUnit(speed float64, strength float64) *Unit {
 	return &Unit{Speed: speed, Strength: strength}
 }
 
 type Army struct {
 	Units []*Unit
-	Speed int
+	Speed float64
 	Size int
 }
 
