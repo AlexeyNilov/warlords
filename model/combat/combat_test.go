@@ -20,14 +20,14 @@ func TestGetWiningProbability(t *testing.T) {
 	assert.InDelta(t, 0.5, GetWiningProbability(1, 10, 0.5), 0.01)
 }
 
-func TestFight(t *testing.T) {
+func TestGetWinner(t *testing.T) {
 	attacker := things.NewUnit(1, 2)
 	defender := things.NewUnit(1, 1)
 	c := NewCombat(attacker, defender)
 
 	attackerWins := 0
 	for range 10000 {
-		winner := c.Fight(0)
+		winner := c.GetWinner(0)
 		if winner == attacker {
 			attackerWins++
 		}

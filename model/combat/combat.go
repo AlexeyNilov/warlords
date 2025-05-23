@@ -37,7 +37,7 @@ func GetWiningProbability(unit1Strength, unit2Strength, minWinChance float64) fl
 	return unit1Probability
 }
 
-func (c *Combat) Fight(minWinChance float64) *things.Unit {
+func (c *Combat) GetWinner(minWinChance float64) *things.Unit {
 	attackerProbability := GetWiningProbability(c.Attacker.Strength, c.Defender.Strength, minWinChance)
 	randomNumber := rand.Float64()
 	if randomNumber <= attackerProbability {
