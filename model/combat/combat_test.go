@@ -1,7 +1,6 @@
 package combat
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/AlexeyNilov/warlords/model/things"
@@ -14,26 +13,23 @@ func TestNewCombat(t *testing.T) {
 	assert.Equal(t, 2.0, c.Defender.Strength)
 }
 
-func TestGetBonus(t *testing.T) {
-	assert.Less(t, GetBonus(0), 1.0)
+func TestGetWiningProbability(t *testing.T) {
+	assert.InDelta(t, 0.5, GetWiningProbability(1, 1, 0), 0.01)
+	assert.InDelta(t, 0.33, GetWiningProbability(1, 2, 0), 0.01)
+	assert.InDelta(t, 0.5, GetWiningProbability(1, 10, 0.5), 0.01)
 }
 
 func TestFight(t *testing.T) {
 	attacker := things.NewUnit(1, 2)
 	defender := things.NewUnit(1, 1)
 	c := NewCombat(attacker, defender)
-	winner := c.Fight(0)
-	assert.Equal(t, attacker, winner)
 
 	attackerWins := 0
 	for range 10000 {
-		winner := c.Fight(10000)
+		winner := c.Fight(0)
 		if winner == attacker {
 			attackerWins++
 		}
 	}
-	fmt.Println(attackerWins)
-	assert.Greater(t, 5100, attackerWins)
-	assert.Less(t, 4900, attackerWins)
+	assert.InDelta(t, 0.67, float64(attackerWins)/10000, 0.01)
 }
-
